@@ -27,7 +27,7 @@ namespace Server
             
         }
 
-        private bool VerifyLogin(string username, string password)
+        private bool VerifyLogin(string username, string passwordhash)
         {
             //Conecção à base de dados.
             SqlConnection conn = null;
@@ -79,7 +79,7 @@ namespace Server
             }
         }
 
-        private void Register(string username, byte[] saltedPasswordHash, byte[] salt)
+        private void Register(string username, string passwordHash)
         {
             SqlConnection conn = null;
             try
@@ -93,11 +93,10 @@ namespace Server
 
                 // Declaração dos parâmetros do comando SQL
                 SqlParameter paramUsername = new SqlParameter("@username", username);
-                SqlParameter paramPassHash = new SqlParameter("@saltedPasswordHash", saltedPasswordHash);
-                SqlParameter paramSalt = new SqlParameter("@salt", salt);
+                SqlParameter paramPassHash = new SqlParameter("@passwordHash", passwordHash);
 
                 // Declaração do comando SQL
-                String sql = "INSERT INTO Users (Username, SaltedPasswordHash, Salt) VALUES (@username,@saltedPasswordHash,@salt)";
+                String sql = "INSERT INTO Users (Username, PasswordHash) VALUES (@username,@passwordHash)";
 
                 // Prepara comando SQL para ser executado na Base de Dados
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -105,7 +104,6 @@ namespace Server
                 // Introduzir valores aos parâmentros registados no comando SQL
                 cmd.Parameters.Add(paramUsername);
                 cmd.Parameters.Add(paramPassHash);
-                cmd.Parameters.Add(paramSalt);
 
                 // Executar comando SQL
                 int lines = cmd.ExecuteNonQuery();
