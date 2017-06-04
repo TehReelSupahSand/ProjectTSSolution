@@ -1,8 +1,11 @@
-﻿using System;
+﻿using EI.SI;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +14,43 @@ namespace Server
 {
     class Program
     {
+        private const int PORT = 9999;
+        private static ProtocolSI protocolSI;
         private static RSACryptoServiceProvider rsa;
 
         static void Main(string[] args)
         {
+            protocolSI = new ProtocolSI();
+            TcpListener tcpListener = null;
+            TcpClient tcpClient = null;
+            NetworkStream networkStream = null;
+
+            try
+            {
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
+                tcpListener = new TcpListener(endPoint);
+                tcpListener.Start();
+                tcpClient = tcpListener.AcceptTcpClient();
+                networkStream = tcpClient.GetStream();
+
+                int bytesRead = 0;
+
+                bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
+
+                String username = protocolSI.GetStringFromData();
+                String passwordHash = protocolSI.GetStringFromData();
+                Console.WriteLine(username);
+                Console.WriteLine(passwordHash);
+                Console.ReadKey();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
             rsa = new RSACryptoServiceProvider();
             //Criação de chaves privada/publica.
             string publicKey = rsa.ToXmlString(false);
@@ -23,6 +59,14 @@ namespace Server
             //Guardar as chaves em ficheiros.
             File.WriteAllText("publicKey.txt", publicKey);
             File.WriteAllText("publicPrivateKey.txt", privateKey);
+
+            
+
+
+
+            
+
+            
 
             
         }
@@ -79,7 +123,7 @@ namespace Server
             }
         }
 
-        private void Register(string username, string passwordHash)
+        private void Register(string username, byte[] passwordHash)
         {
             SqlConnection conn = null;
             try
