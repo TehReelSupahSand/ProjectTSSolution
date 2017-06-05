@@ -40,11 +40,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonPedirLista = new System.Windows.Forms.Button();
             this.groupBoxFicheiros = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonGenerateKey = new System.Windows.Forms.Button();
             this.textBoxKey = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.listBoxFicheiros = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxFicheiros.SuspendLayout();
@@ -146,7 +147,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(184, 42);
+            this.pictureBox1.Location = new System.Drawing.Point(187, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(188, 133);
             this.pictureBox1.TabIndex = 10;
@@ -154,7 +155,7 @@
             // 
             // buttonPedirLista
             // 
-            this.buttonPedirLista.Location = new System.Drawing.Point(17, 42);
+            this.buttonPedirLista.Location = new System.Drawing.Point(21, 19);
             this.buttonPedirLista.Name = "buttonPedirLista";
             this.buttonPedirLista.Size = new System.Drawing.Size(139, 23);
             this.buttonPedirLista.TabIndex = 7;
@@ -163,6 +164,7 @@
             // 
             // groupBoxFicheiros
             // 
+            this.groupBoxFicheiros.Controls.Add(this.listBoxFicheiros);
             this.groupBoxFicheiros.Controls.Add(this.button3);
             this.groupBoxFicheiros.Controls.Add(this.button2);
             this.groupBoxFicheiros.Controls.Add(this.button1);
@@ -174,6 +176,33 @@
             this.groupBoxFicheiros.TabIndex = 5;
             this.groupBoxFicheiros.TabStop = false;
             this.groupBoxFicheiros.Text = "Ficheiros";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(259, 172);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 23);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Ficheiro3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(146, 172);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(107, 22);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Ficheiro2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(33, 171);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Ficheiro1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // buttonGenerateKey
             // 
@@ -195,32 +224,13 @@
             this.textBoxKey.Size = new System.Drawing.Size(329, 37);
             this.textBoxKey.TabIndex = 13;
             // 
-            // button1
+            // listBoxFicheiros
             // 
-            this.button1.Location = new System.Drawing.Point(31, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Ficheiro1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(31, 120);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 22);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Ficheiro2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(31, 155);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Ficheiro3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.listBoxFicheiros.FormattingEnabled = true;
+            this.listBoxFicheiros.Location = new System.Drawing.Point(21, 48);
+            this.listBoxFicheiros.Name = "listBoxFicheiros";
+            this.listBoxFicheiros.Size = new System.Drawing.Size(139, 108);
+            this.listBoxFicheiros.TabIndex = 14;
             // 
             // MenuLogin
             // 
@@ -263,6 +273,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBoxFicheiros;
     }
 }
 
