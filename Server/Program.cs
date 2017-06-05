@@ -65,6 +65,20 @@ namespace Server
             File.WriteAllText("publicKey.txt", publicKey);
             File.WriteAllText("publicPrivateKey.txt", privateKey);
 
+            protocolSI = new ProtocolSI();
+            TcpListener tcpListener = null;
+            TcpClient tcpClient = null;
+            NetworkStream networkStream = null;
+
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
+            tcpListener = new TcpListener(endPoint);
+            tcpListener.Start();
+            tcpClient = tcpListener.AcceptTcpClient();
+            networkStream = tcpClient.GetStream();
+
+            byte[] key = protocolSI.Make(ProtocolSICmdType.NORMAL, publicKey);
+            networkStream.Write(key, 0, key.Length);
+
             Console.WriteLine(publicKey);
 
             return;

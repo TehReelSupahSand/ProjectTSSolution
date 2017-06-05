@@ -80,6 +80,23 @@ namespace Client
 
             Server.Program.genKeys();
 
+            protocolSI = new ProtocolSI();
+            TcpListener tcpListener = null;
+            TcpClient tcpClient = null;
+            NetworkStream networkStream = null;
+
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
+            tcpListener = new TcpListener(endPoint);
+            tcpListener.Start();
+            tcpClient = tcpListener.AcceptTcpClient();
+            networkStream = tcpClient.GetStream();
+
+            int bytesRead = 0;
+
+            bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
+            String publicKey = protocolSI.GetStringFromData();
+
+            textBoxKey.Text = publicKey;
         }
     }
 }
