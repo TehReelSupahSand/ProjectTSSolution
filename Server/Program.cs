@@ -24,7 +24,6 @@ namespace Server
             TcpListener tcpListener = null;
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
-            
 
             try
             {
@@ -54,7 +53,7 @@ namespace Server
 
         }
 
-        public static void genKeys()
+        public static string genKeys()
         {
             rsa = new RSACryptoServiceProvider();
             //Criação de chaves privada/publica.
@@ -65,23 +64,9 @@ namespace Server
             File.WriteAllText("publicKey.txt", publicKey);
             File.WriteAllText("publicPrivateKey.txt", privateKey);
 
-            protocolSI = new ProtocolSI();
-            TcpListener tcpListener = null;
-            TcpClient tcpClient = null;
-            NetworkStream networkStream = null;
+            //Console.WriteLine(publicKey);
 
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
-            tcpListener = new TcpListener(endPoint);
-            tcpListener.Start();
-            tcpClient = tcpListener.AcceptTcpClient();
-            networkStream = tcpClient.GetStream();
-
-            byte[] key = protocolSI.Make(ProtocolSICmdType.NORMAL, publicKey);
-            networkStream.Write(key, 0, key.Length);
-
-            Console.WriteLine(publicKey);
-
-            return;
+            return publicKey;
         }
 
         private bool VerifyLogin(string username, string passwordhash)

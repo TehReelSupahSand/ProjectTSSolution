@@ -78,7 +78,9 @@ namespace Client
         private void buttonGenerateKey_Click(object sender, EventArgs e)
         {
 
-            Server.Program.genKeys();
+            string pubKey = Server.Program.genKeys();
+
+            textBoxKey.Text = pubKey;
 
             protocolSI = new ProtocolSI();
             TcpListener tcpListener = null;
