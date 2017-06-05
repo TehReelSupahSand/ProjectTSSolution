@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Net;
 using System.Net.Sockets;
 using EI.SI;
+using System.IO;
 
 namespace Client
 {
@@ -21,23 +22,27 @@ namespace Client
         private const int PORT = 9999;
         private static ProtocolSI protocolSI;
         private static RSACryptoServiceProvider rsa;
+        TcpClient tcpClient = new TcpClient();
+        NetworkStream networkStream = null;
 
         public MenuLogin()
         {
             InitializeComponent();
 
-            groupBoxFicheiros.Enabled = false;
+            //groupBoxFicheiros.Enabled = false;
             buttonLogout.Enabled = false;
 
             protocolSI = new ProtocolSI();
+            rsa = new RSACryptoServiceProvider();
+            
 
         }
 
         private void buttonRegistar_Click(object sender, EventArgs e)
         {
-            rsa = new RSACryptoServiceProvider();
+            /*rsa = new RSACryptoServiceProvider();
             TcpClient tcpClient = new TcpClient();
-            NetworkStream networkStream = null;
+            NetworkStream networkStream = null;*/
 
             try
             {
@@ -59,36 +64,50 @@ namespace Client
                 networkStream.Write(passwordEnc, 0, passwordEnc.Length);
 
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Console.WriteLine(exception.Message);
-            }
-
-            finally
-            {
-                if (networkStream != null)
-                {
-                    networkStream.Close();
-                }
-
-                if (tcpClient != null)
-                {
-                    tcpClient.Close();
-                }
+                throw;
             }
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            
+            /*rsa = new RSACryptoServiceProvider();
+            TcpClient tcpClient = new TcpClient();
+            NetworkStream networkStream = null;*/
+
+            try
+            {
+                tcpClient = new TcpClient();
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
+
+                tcpClient.Connect(endPoint);
+                networkStream = tcpClient.GetStream();
+
+                username = textBoxUsername.Text;
+                password = textBoxPassword.Text;
+
+                byte[] usernamebyte = Encoding.UTF8.GetBytes(username);
+                byte[] usernameEnc = rsa.Encrypt(usernamebyte, true);
+                networkStream.Write(usernameEnc, 0, usernameEnc.Length);
+
+                byte[] passbyte = Encoding.UTF8.GetBytes(password);
+                byte[] passwordEnc = rsa.Encrypt(passbyte, true);
+                networkStream.Write(passwordEnc, 0, passwordEnc.Length);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void buttonGenerateKey_Click(object sender, EventArgs e)
         {
 
-            rsa = new RSACryptoServiceProvider();
+            /*rsa = new RSACryptoServiceProvider();
             TcpClient tcpClient = new TcpClient();
-            NetworkStream networkStream = null;
+            NetworkStream networkStream = null;*/
 
             try
             {
@@ -106,12 +125,12 @@ namespace Client
                 }
             }
 
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw;
             }
 
-            finally
+            /*finally
             {
                 if (networkStream != null)
                 {
@@ -122,7 +141,12 @@ namespace Client
                 {
                     tcpClient.Close();
                 }
-            }
+            }*/
+        }
+
+        private void buttonPedirFicheiro_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

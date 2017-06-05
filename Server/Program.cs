@@ -31,8 +31,10 @@ namespace Server
                 rsa = new RSACryptoServiceProvider();
 
                 string publicKey = rsa.ToXmlString(false);
+                string privatepublicKey = rsa.ToXmlString(true);
 
-                File.WriteAllText("publickey.txt", publicKey);
+                File.WriteAllText("publicprivateKey.txt", privatepublicKey);
+
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
                 tcpListener = new TcpListener(endPoint);
 
@@ -75,7 +77,7 @@ namespace Server
 
                 Console.WriteLine(username);
                 Console.WriteLine(password);
-                Console.ReadKey();
+  
             }
             catch (Exception exception)
             {

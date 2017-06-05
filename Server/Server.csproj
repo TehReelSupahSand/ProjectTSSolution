@@ -82,6 +82,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ficheiros\estg_logo.jpg" />
+    <Content Include="Ficheiros\ipl_logo_gray.png" />
+    <Content Include="Ficheiros\ipl_logo_white.png" />
     <Content Include="Users.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
