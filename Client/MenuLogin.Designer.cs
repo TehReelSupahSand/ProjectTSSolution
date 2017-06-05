@@ -38,12 +38,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.listBoxlistaFicheiros = new System.Windows.Forms.ListBox();
-            this.buttonPedirFicheiro = new System.Windows.Forms.Button();
             this.buttonPedirLista = new System.Windows.Forms.Button();
             this.groupBoxFicheiros = new System.Windows.Forms.GroupBox();
             this.buttonGenerateKey = new System.Windows.Forms.Button();
             this.textBoxKey = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxFicheiros.SuspendLayout();
@@ -62,7 +63,7 @@
             // buttonLogin
             // 
             this.buttonLogin.Location = new System.Drawing.Point(155, 201);
-            this.buttonLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonLogin.Margin = new System.Windows.Forms.Padding(2);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(80, 34);
             this.buttonLogin.TabIndex = 4;
@@ -78,9 +79,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(8, 40);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(248, 248);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
@@ -89,7 +90,7 @@
             // buttonRegistar
             // 
             this.buttonRegistar.Location = new System.Drawing.Point(4, 201);
-            this.buttonRegistar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonRegistar.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRegistar.Name = "buttonRegistar";
             this.buttonRegistar.Size = new System.Drawing.Size(80, 34);
             this.buttonRegistar.TabIndex = 4;
@@ -100,7 +101,7 @@
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(4, 160);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(231, 20);
@@ -109,7 +110,7 @@
             // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(7, 73);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(229, 20);
             this.textBoxUsername.TabIndex = 2;
@@ -151,26 +152,9 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // listBoxlistaFicheiros
-            // 
-            this.listBoxlistaFicheiros.FormattingEnabled = true;
-            this.listBoxlistaFicheiros.Location = new System.Drawing.Point(23, 41);
-            this.listBoxlistaFicheiros.Name = "listBoxlistaFicheiros";
-            this.listBoxlistaFicheiros.Size = new System.Drawing.Size(139, 134);
-            this.listBoxlistaFicheiros.TabIndex = 9;
-            // 
-            // buttonPedirFicheiro
-            // 
-            this.buttonPedirFicheiro.Location = new System.Drawing.Point(202, 190);
-            this.buttonPedirFicheiro.Name = "buttonPedirFicheiro";
-            this.buttonPedirFicheiro.Size = new System.Drawing.Size(139, 23);
-            this.buttonPedirFicheiro.TabIndex = 8;
-            this.buttonPedirFicheiro.Text = "Pedir Ficheiro";
-            this.buttonPedirFicheiro.UseVisualStyleBackColor = true;
-            // 
             // buttonPedirLista
             // 
-            this.buttonPedirLista.Location = new System.Drawing.Point(23, 190);
+            this.buttonPedirLista.Location = new System.Drawing.Point(17, 42);
             this.buttonPedirLista.Name = "buttonPedirLista";
             this.buttonPedirLista.Size = new System.Drawing.Size(139, 23);
             this.buttonPedirLista.TabIndex = 7;
@@ -179,13 +163,14 @@
             // 
             // groupBoxFicheiros
             // 
-            this.groupBoxFicheiros.Controls.Add(this.listBoxlistaFicheiros);
+            this.groupBoxFicheiros.Controls.Add(this.button3);
+            this.groupBoxFicheiros.Controls.Add(this.button2);
+            this.groupBoxFicheiros.Controls.Add(this.button1);
             this.groupBoxFicheiros.Controls.Add(this.buttonPedirLista);
             this.groupBoxFicheiros.Controls.Add(this.pictureBox1);
-            this.groupBoxFicheiros.Controls.Add(this.buttonPedirFicheiro);
-            this.groupBoxFicheiros.Location = new System.Drawing.Point(304, 45);
+            this.groupBoxFicheiros.Location = new System.Drawing.Point(304, 70);
             this.groupBoxFicheiros.Name = "groupBoxFicheiros";
-            this.groupBoxFicheiros.Size = new System.Drawing.Size(394, 243);
+            this.groupBoxFicheiros.Size = new System.Drawing.Size(394, 205);
             this.groupBoxFicheiros.TabIndex = 5;
             this.groupBoxFicheiros.TabStop = false;
             this.groupBoxFicheiros.Text = "Ficheiros";
@@ -193,7 +178,7 @@
             // buttonGenerateKey
             // 
             this.buttonGenerateKey.Location = new System.Drawing.Point(96, 13);
-            this.buttonGenerateKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonGenerateKey.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateKey.Name = "buttonGenerateKey";
             this.buttonGenerateKey.Size = new System.Drawing.Size(110, 21);
             this.buttonGenerateKey.TabIndex = 12;
@@ -203,11 +188,39 @@
             // 
             // textBoxKey
             // 
-            this.textBoxKey.Location = new System.Drawing.Point(243, 2);
+            this.textBoxKey.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBoxKey.Location = new System.Drawing.Point(283, 13);
             this.textBoxKey.Multiline = true;
             this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(358, 37);
+            this.textBoxKey.Size = new System.Drawing.Size(329, 37);
             this.textBoxKey.TabIndex = 13;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(31, 86);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Ficheiro1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(31, 120);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(107, 22);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Ficheiro2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(31, 155);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 23);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Ficheiro3";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // MenuLogin
             // 
@@ -220,7 +233,7 @@
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuLogin";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
@@ -243,12 +256,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ListBox listBoxlistaFicheiros;
-        private System.Windows.Forms.Button buttonPedirFicheiro;
         private System.Windows.Forms.Button buttonPedirLista;
         private System.Windows.Forms.GroupBox groupBoxFicheiros;
         private System.Windows.Forms.Button buttonGenerateKey;
         private System.Windows.Forms.TextBox textBoxKey;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
