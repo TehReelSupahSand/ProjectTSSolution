@@ -177,7 +177,7 @@
             // 
             // buttonGenerateKey
             // 
-            this.buttonGenerateKey.Location = new System.Drawing.Point(96, 13);
+            this.buttonGenerateKey.Location = new System.Drawing.Point(95, 13);
             this.buttonGenerateKey.Margin = new System.Windows.Forms.Padding(2);
             this.buttonGenerateKey.Name = "buttonGenerateKey";
             this.buttonGenerateKey.Size = new System.Drawing.Size(110, 21);
