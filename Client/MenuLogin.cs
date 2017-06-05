@@ -74,5 +74,10 @@ namespace Client
         {
 
         }
+
+        private void buttonGenerateKey_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
