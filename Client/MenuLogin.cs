@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Net;
 using System.Net.Sockets;
 using EI.SI;
+using Server;
 
 namespace Client
 {
@@ -77,7 +78,7 @@ namespace Client
 
         private void buttonGenerateKey_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

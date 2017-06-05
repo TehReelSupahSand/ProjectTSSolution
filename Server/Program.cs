@@ -24,6 +24,7 @@ namespace Server
             TcpListener tcpListener = null;
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
+            
 
             
 
@@ -56,7 +57,7 @@ namespace Server
             
         }
 
-        private void genKeys()
+        public static void genKeys()
         {
             rsa = new RSACryptoServiceProvider();
             //Criação de chaves privada/publica.
