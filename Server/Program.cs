@@ -15,58 +15,65 @@ namespace Server
     public class Program
     {
         private const int PORT = 9999;
-        private static ProtocolSI protocolSI;
+        private static ProtocolSI protocolsi;
         private static RSACryptoServiceProvider rsa;
+
 
         static void Main(string[] args)
         {
-            protocolSI = new ProtocolSI();
+            protocolsi = new ProtocolSI();
             TcpListener tcpListener = null;
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
 
             try
             {
+                rsa = new RSACryptoServiceProvider();
+
+                string publicKey = rsa.ToXmlString(false);
+
+                File.WriteAllText("publickey.txt", publicKey);
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
                 tcpListener = new TcpListener(endPoint);
+
+                Console.WriteLine("Starting Server...");
+
                 tcpListener.Start();
+                Console.WriteLine("Waiting for connections...");
+
                 tcpClient = tcpListener.AcceptTcpClient();
+                Console.WriteLine("Client found.");
+
                 networkStream = tcpClient.GetStream();
 
-                byte[] publicKey;
-                byte[] SymClientKey;
+                byte[] packet = protocolsi.Make(ProtocolSICmdType.PUBLIC_KEY, publicKey);
+                networkStream.Write(packet, 0, packet.Length);
 
-                string pubKey = genKeys();
-
-                publicKey = Encoding.UTF8.GetBytes(pubKey);
-
-                // send to client the public key
-                networkStream.Write(publicKey, 0, publicKey.Length);
-
-                // now wait to receive the client key
-                //networkStream.Read(bobPubKeyBlob, 0, bobPubKeyBlob.Length);
-
-                int bytesRead = 0;
-
-                bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
-                String username = protocolSI.GetStringFromData();
-
-                bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
-                String passwordHash = protocolSI.GetStringFromData();
-
-                Console.WriteLine(username);
-                Console.WriteLine(passwordHash);
-                Console.ReadKey();
+                Console.WriteLine("Chave Pública Enviada");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-
-                throw;
+                Console.WriteLine(exception.Message);
             }
+
+            finally
+            {
+                if (networkStream != null)
+                {
+                    networkStream.Close();
+                }
+
+                if (tcpClient != null)
+                {
+                    tcpClient.Close();
+                }
+            }
+
+            Console.ReadKey();
 
         }
 
-        public static string genKeys()
+        /*public static string genKeys()
         {
             rsa = new RSACryptoServiceProvider();
             //Criação de chaves privada/publica.
@@ -175,7 +182,7 @@ namespace Server
             {
                 throw new Exception("Error while inserting an user:" + e.Message);
             }
-        }
+        }*/
 
     }
 }

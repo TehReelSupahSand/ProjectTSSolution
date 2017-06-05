@@ -17,13 +17,9 @@ namespace Client
     public partial class MenuLogin : Form
     {
 
-        private string username;
-        private string password;
-        private string passwordHash;
-        public byte[] serverPKey = null;
-        public byte[] clientSym = null;
         private const int PORT = 9999;
         private static ProtocolSI protocolSI;
+        private static RSACryptoServiceProvider rsa;
 
         public MenuLogin()
         {
@@ -32,24 +28,13 @@ namespace Client
             groupBoxFicheiros.Enabled = false;
             buttonLogout.Enabled = false;
 
-            TcpClient tcpClient = new TcpClient();
-            NetworkStream networkStream = null;
-
-            tcpClient = new TcpClient();
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
-            tcpClient.Connect(endPoint);
-            networkStream = tcpClient.GetStream();
-            //networkStream = tcpClient.GetStream();
-
-            serverPKey = new byte[clientSym.Length];
-
-            networkStream.Read(serverPKey, 0, serverPKey.Length);
+            protocolSI = new ProtocolSI();
 
         }
 
         private void buttonRegistar_Click(object sender, EventArgs e)
         {
-            //Criação da hash da password.
+            /*//Criação da hash da password.
             username = textBoxUsername.Text;
             password = textBoxPassword.Text;
 
@@ -58,7 +43,7 @@ namespace Client
             byte[] passwordHash = md5.ComputeHash(pass);
 
             //Passar os dados do utilizador para o server.
-            protocolSI = new ProtocolSI();
+            protocolSI = new ProtocolSI();*/
 
            /* try
             {
@@ -83,27 +68,45 @@ namespace Client
         private void buttonGenerateKey_Click(object sender, EventArgs e)
         {
 
-            string pubKey = Server.Program.genKeys();
-
-            textBoxKey.Text = pubKey;
-
-            protocolSI = new ProtocolSI();
-            TcpListener tcpListener = null;
-            TcpClient tcpClient = null;
+            rsa = new RSACryptoServiceProvider();
+            TcpClient tcpClient = new TcpClient();
             NetworkStream networkStream = null;
 
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
-            tcpListener = new TcpListener(endPoint);
-            tcpListener.Start();
-            tcpClient = tcpListener.AcceptTcpClient();
-            networkStream = tcpClient.GetStream();
+            try
+            {
+                tcpClient = new TcpClient();
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
 
-            int bytesRead = 0;
+                tcpClient.Connect(endPoint);
+                networkStream = tcpClient.GetStream();
 
-            bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
-            String publicKey = protocolSI.GetStringFromData();
+                int bytesRead = 0;
 
-            textBoxKey.Text = publicKey;
+                networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
+
+                if (protocolSI.GetCmdType() == ProtocolSICmdType.PUBLIC_KEY)
+                {
+                    textBoxKey.Text = protocolSI.GetStringFromData();
+                }
+            }
+
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+            finally
+            {
+                if (networkStream != null)
+                {
+                    networkStream.Close();
+                }
+
+                if (tcpClient != null)
+                {
+                    tcpClient.Close();
+                }
+            }
         }
     }
 }
