@@ -28,7 +28,6 @@ namespace Server
 
             try
             {
-            
                 rsa = new RSACryptoServiceProvider();
 
                 string publicKey = rsa.ToXmlString(false);
@@ -58,9 +57,19 @@ namespace Server
             {
                 Console.WriteLine(exception.Message);
             }
-            
-            
-            /*try
+
+            Console.ReadKey();
+        }
+
+        private void register()
+        {
+
+            protocolSI = new ProtocolSI();
+            TcpListener tcpListener = null;
+            TcpClient tcpClient = null;
+            NetworkStream networkStream = null;
+
+            try
             {
                 //Obter username
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
@@ -78,7 +87,7 @@ namespace Server
 
                 Console.WriteLine(username);
                 Console.WriteLine(password);
-  
+
             }
             catch (Exception exception)
             {
@@ -95,12 +104,11 @@ namespace Server
                 {
                     tcpClient.Close();
                 }
-            }*/
-
+            }
         }
 
 
-        private string[] pedirLista()
+        static void pedirLista()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -108,8 +116,7 @@ namespace Server
 
             string[] ficheiros = Directory.GetFiles(pasta).Select(Path.GetFileName).ToArray();
 
-
-            return ficheiros;//falta encryptar
+            foreach (string f in ficheiros) { Console.WriteLine(f); }
         }
 
         /*private bool VerifyLogin(string username, string passwordhash)
