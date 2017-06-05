@@ -99,6 +99,17 @@ namespace Server
         }
 
 
+        private void pedirLista()
+        {
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            string pasta = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605");
+
+            string[] ficheiros = Directory.GetFiles(pasta).Select(Path.GetFileName).ToArray();
+
+            foreach (string f in ficheiros) { Console.WriteLine(ficheiros); }
+        }
+
         /*private bool VerifyLogin(string username, string passwordhash)
         {
             //Conecção à base de dados.
