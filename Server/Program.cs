@@ -36,9 +36,11 @@ namespace Server
                 int bytesRead = 0;
 
                 bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
-
                 String username = protocolSI.GetStringFromData();
+
+                bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
                 String passwordHash = protocolSI.GetStringFromData();
+
                 Console.WriteLine(username);
                 Console.WriteLine(passwordHash);
                 Console.ReadKey();
