@@ -104,6 +104,7 @@ namespace Client
 
         private void buttonGenerateKey_Click(object sender, EventArgs e)
         {
+            groupBoxFicheiros.Enabled = true;
 
             /*rsa = new RSACryptoServiceProvider();
             TcpClient tcpClient = new TcpClient();
