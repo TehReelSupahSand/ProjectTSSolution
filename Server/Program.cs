@@ -15,13 +15,13 @@ namespace Server
     public class Program
     {
         private const int PORT = 9999;
-        private static ProtocolSI protocolsi;
+        private static ProtocolSI protocolSI;
         private static RSACryptoServiceProvider rsa;
 
 
         static void Main(string[] args)
         {
-            protocolsi = new ProtocolSI();
+            protocolSI = new ProtocolSI();
             TcpListener tcpListener = null;
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
@@ -46,7 +46,7 @@ namespace Server
 
                 networkStream = tcpClient.GetStream();
 
-                byte[] packet = protocolsi.Make(ProtocolSICmdType.PUBLIC_KEY, publicKey);
+                byte[] packet = protocolSI.Make(ProtocolSICmdType.PUBLIC_KEY, publicKey);
                 networkStream.Write(packet, 0, packet.Length);
 
                 Console.WriteLine("Chave Pública Enviada");
@@ -56,6 +56,31 @@ namespace Server
                 Console.WriteLine(exception.Message);
             }
 
+            
+            try
+            {
+                //Obter username
+                networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
+                string usernameEnc = protocolSI.GetStringFromData();
+                byte[] usernamebyte = Convert.FromBase64String(usernameEnc);
+                byte[] usernameDec = rsa.Decrypt(usernamebyte, true);
+                string username = Encoding.UTF8.GetString(usernameDec);
+
+                //Obter password
+                networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
+                string passwordEnc = protocolSI.GetStringFromData();
+                byte[] passwordbyte = Convert.FromBase64String(usernameEnc);
+                byte[] passDec = rsa.Decrypt(passwordbyte, true);
+                string password = Encoding.UTF8.GetString(passDec);
+
+                Console.WriteLine(username);
+                Console.WriteLine(password);
+                Console.ReadKey();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
             finally
             {
                 if (networkStream != null)
@@ -69,27 +94,10 @@ namespace Server
                 }
             }
 
-            Console.ReadKey();
-
         }
 
-        /*public static string genKeys()
-        {
-            rsa = new RSACryptoServiceProvider();
-            //Criação de chaves privada/publica.
-            string publicKey = rsa.ToXmlString(false);
-            string privateKey = rsa.ToXmlString(true);
 
-            //Guardar as chaves em ficheiros.
-            File.WriteAllText("publicKey.txt", publicKey);
-            File.WriteAllText("publicPrivateKey.txt", privateKey);
-
-            //Console.WriteLine(publicKey);
-
-            return publicKey;
-        }
-
-        private bool VerifyLogin(string username, string passwordhash)
+        /*private bool VerifyLogin(string username, string passwordhash)
         {
             //Conecção à base de dados.
             SqlConnection conn = null;

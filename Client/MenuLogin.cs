@@ -16,7 +16,8 @@ namespace Client
 {
     public partial class MenuLogin : Form
     {
-
+        private string username;
+        private string password;
         private const int PORT = 9999;
         private static ProtocolSI protocolSI;
         private static RSACryptoServiceProvider rsa;
@@ -34,30 +35,47 @@ namespace Client
 
         private void buttonRegistar_Click(object sender, EventArgs e)
         {
-            /*//Criação da hash da password.
-            username = textBoxUsername.Text;
-            password = textBoxPassword.Text;
+            rsa = new RSACryptoServiceProvider();
+            TcpClient tcpClient = new TcpClient();
+            NetworkStream networkStream = null;
 
-            MD5 md5 = MD5.Create();
-            byte[] pass = Encoding.UTF8.GetBytes(password);
-            byte[] passwordHash = md5.ComputeHash(pass);
-
-            //Passar os dados do utilizador para o server.
-            protocolSI = new ProtocolSI();*/
-
-           /* try
+            try
             {
-                byte[] byteUsername = protocolSI.Make(ProtocolSICmdType.NORMAL, username);
-                networkStream.Write(byteUsername, 0, byteUsername.Length);
+                tcpClient = new TcpClient();
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
 
-                byte[] bytePasswordHash = protocolSI.Make(ProtocolSICmdType.NORMAL, passwordHash);
-                networkStream.Write(bytePasswordHash, 0, bytePasswordHash.Length);
+                tcpClient.Connect(endPoint);
+                networkStream = tcpClient.GetStream();
+
+                username = textBoxUsername.Text;
+                password = textBoxPassword.Text;
+
+                byte[] usernamebyte = Encoding.UTF8.GetBytes(username);
+                byte[] usernameEnc = rsa.Encrypt(usernamebyte, true);
+                networkStream.Write(usernameEnc, 0, usernameEnc.Length);
+
+                byte[] passbyte = Encoding.UTF8.GetBytes(password);
+                byte[] passwordEnc = rsa.Encrypt(passbyte, true);
+                networkStream.Write(passwordEnc, 0, passwordEnc.Length);
+
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Console.WriteLine(exception.Message);
+            }
 
-                throw;
-            }*/
+            finally
+            {
+                if (networkStream != null)
+                {
+                    networkStream.Close();
+                }
+
+                if (tcpClient != null)
+                {
+                    tcpClient.Close();
+                }
+            }
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -80,8 +98,6 @@ namespace Client
                 tcpClient.Connect(endPoint);
                 networkStream = tcpClient.GetStream();
 
-                int bytesRead = 0;
-
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
 
                 if (protocolSI.GetCmdType() == ProtocolSICmdType.PUBLIC_KEY)
@@ -92,7 +108,7 @@ namespace Client
 
             catch (Exception exception)
             {
-                Console.WriteLine(exception.Message);
+                throw;
             }
 
             finally
