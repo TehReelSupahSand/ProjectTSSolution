@@ -45,12 +45,14 @@ namespace Client
 
             TcpClient tcpClient = new TcpClient();
             NetworkStream networkStream = null;
+            
 
             try
             {
                 tcpClient = new TcpClient();
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
                 tcpClient.Connect(endPoint);
+                networkStream = tcpClient.GetStream();
                 networkStream = tcpClient.GetStream();
 
                 byte[] byteUsername = protocolSI.Make(ProtocolSICmdType.NORMAL, username);
@@ -64,6 +66,11 @@ namespace Client
 
                 throw;
             }
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
