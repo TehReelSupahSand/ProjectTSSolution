@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Program
+    public class Program
     {
         private const int PORT = 9999;
         private static ProtocolSI protocolSI;
@@ -24,8 +24,6 @@ namespace Server
             TcpListener tcpListener = null;
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
-            
-
             
 
             try
@@ -54,7 +52,6 @@ namespace Server
                 throw;
             }
 
-            
         }
 
         public static void genKeys()
@@ -67,9 +64,13 @@ namespace Server
             //Guardar as chaves em ficheiros.
             File.WriteAllText("publicKey.txt", publicKey);
             File.WriteAllText("publicPrivateKey.txt", privateKey);
+
+            Console.WriteLine(publicKey);
+
+            return;
         }
 
-    private bool VerifyLogin(string username, string passwordhash)
+        private bool VerifyLogin(string username, string passwordhash)
         {
             //Conecção à base de dados.
             SqlConnection conn = null;
