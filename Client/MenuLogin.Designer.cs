@@ -40,11 +40,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonPedirLista = new System.Windows.Forms.Button();
             this.groupBoxFicheiros = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonGenerateKey = new System.Windows.Forms.Button();
             this.textBoxKey = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxFicheiros.SuspendLayout();
@@ -160,6 +160,7 @@
             this.buttonPedirLista.TabIndex = 7;
             this.buttonPedirLista.Text = "Pedir Lista de Ficheiros";
             this.buttonPedirLista.UseVisualStyleBackColor = true;
+            this.buttonPedirLista.Click += new System.EventHandler(this.buttonPedirLista_Click);
             // 
             // groupBoxFicheiros
             // 
@@ -174,6 +175,34 @@
             this.groupBoxFicheiros.TabIndex = 5;
             this.groupBoxFicheiros.TabStop = false;
             this.groupBoxFicheiros.Text = "Ficheiros";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(31, 155);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 23);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Ficheiro3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(31, 120);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(107, 22);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Ficheiro2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(31, 86);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Ficheiro1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonGenerateKey
             // 
@@ -194,33 +223,6 @@
             this.textBoxKey.Name = "textBoxKey";
             this.textBoxKey.Size = new System.Drawing.Size(329, 37);
             this.textBoxKey.TabIndex = 13;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(31, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Ficheiro1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(31, 120);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 22);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Ficheiro2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(31, 155);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Ficheiro3";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // MenuLogin
             // 

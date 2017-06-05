@@ -145,9 +145,19 @@ namespace Client
             }*/
         }
 
-        private void buttonPedirFicheiro_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void buttonPedirLista_Click(object sender, EventArgs e)
+        {
+            /*decryptar a string[]
+
+            foreach (string imagem in //string[])
+            {
+                listBoxFicheiros.Items.Add(imagem);
+            }*/
         }
     }
 }
