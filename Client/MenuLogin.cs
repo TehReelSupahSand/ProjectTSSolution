@@ -26,14 +26,16 @@ namespace Client
         public MenuLogin()
         {
             InitializeComponent();
+
+            groupBoxFicheiros.Enabled = false;
             
         }
 
         private void buttonRegistar_Click(object sender, EventArgs e)
         {
             //Criação da hash da password.
-            username = textBoxUsernameRegisto.Text;
-            password = textBoxPasswordRegisto.Text;
+            username = textBoxUsername.Text;
+            password = textBoxPassword.Text;
 
             MD5 md5 = MD5.Create();
             byte[] pass = Encoding.UTF8.GetBytes(password);
