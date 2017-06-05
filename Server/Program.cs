@@ -99,7 +99,7 @@ namespace Server
         }
 
 
-        private void pedirLista()
+        static void pedirLista()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -107,7 +107,7 @@ namespace Server
 
             string[] ficheiros = Directory.GetFiles(pasta).Select(Path.GetFileName).ToArray();
 
-            foreach (string f in ficheiros) { Console.WriteLine(ficheiros); }
+            foreach (string f in ficheiros) { Console.WriteLine(f); }
         }
 
         /*private bool VerifyLogin(string username, string passwordhash)
