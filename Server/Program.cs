@@ -25,6 +25,8 @@ namespace Server
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
 
+            
+
             try
             {
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
@@ -51,8 +53,11 @@ namespace Server
                 throw;
             }
 
+            
+        }
 
-
+        private void genKeys()
+        {
             rsa = new RSACryptoServiceProvider();
             //Criação de chaves privada/publica.
             string publicKey = rsa.ToXmlString(false);
@@ -61,19 +66,9 @@ namespace Server
             //Guardar as chaves em ficheiros.
             File.WriteAllText("publicKey.txt", publicKey);
             File.WriteAllText("publicPrivateKey.txt", privateKey);
-
-            
-
-
-
-            
-
-            
-
-            
         }
 
-        private bool VerifyLogin(string username, string passwordhash)
+    private bool VerifyLogin(string username, string passwordhash)
         {
             //Conecção à base de dados.
             SqlConnection conn = null;
