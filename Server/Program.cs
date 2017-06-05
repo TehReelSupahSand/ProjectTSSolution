@@ -53,7 +53,7 @@ namespace Server
 
         }
 
-        public static void genKeys()
+        public static string genKeys()
         {
             rsa = new RSACryptoServiceProvider();
             //Criação de chaves privada/publica.
@@ -64,9 +64,9 @@ namespace Server
             File.WriteAllText("publicKey.txt", publicKey);
             File.WriteAllText("publicPrivateKey.txt", privateKey);
 
-            Console.WriteLine(publicKey);
+            //Console.WriteLine(publicKey);
 
-            return;
+            return publicKey;
         }
 
         private bool VerifyLogin(string username, string passwordhash)

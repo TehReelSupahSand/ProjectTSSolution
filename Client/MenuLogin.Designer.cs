@@ -203,9 +203,10 @@
             // 
             // textBoxKey
             // 
-            this.textBoxKey.Location = new System.Drawing.Point(304, 19);
+            this.textBoxKey.Location = new System.Drawing.Point(243, 2);
+            this.textBoxKey.Multiline = true;
             this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(231, 20);
+            this.textBoxKey.Size = new System.Drawing.Size(358, 37);
             this.textBoxKey.TabIndex = 13;
             // 
             // MenuLogin
