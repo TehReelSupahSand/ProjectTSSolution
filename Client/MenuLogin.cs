@@ -56,9 +56,9 @@ namespace Client
                 networkStream = tcpClient.GetStream();
 
                 byte[] byteUsername = protocolSI.Make(ProtocolSICmdType.NORMAL, username);
-                byte[] bytePasswordHash = protocolSI.Make(ProtocolSICmdType.NORMAL, passwordHash);
-
                 networkStream.Write(byteUsername, 0, byteUsername.Length);
+
+                byte[] bytePasswordHash = protocolSI.Make(ProtocolSICmdType.NORMAL, passwordHash);
                 networkStream.Write(bytePasswordHash, 0, bytePasswordHash.Length);
             }
             catch (Exception)
