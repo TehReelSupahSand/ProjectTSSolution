@@ -20,6 +20,8 @@ namespace Client
         private string username;
         private string password;
         private string passwordHash;
+        public byte[] serverPKey = null;
+        public byte[] clientSym = null;
         private const int PORT = 9999;
         private static ProtocolSI protocolSI;
 
@@ -28,7 +30,21 @@ namespace Client
             InitializeComponent();
 
             groupBoxFicheiros.Enabled = false;
-            
+            buttonLogout.Enabled = false;
+
+            TcpClient tcpClient = new TcpClient();
+            NetworkStream networkStream = null;
+
+            tcpClient = new TcpClient();
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
+            tcpClient.Connect(endPoint);
+            networkStream = tcpClient.GetStream();
+            //networkStream = tcpClient.GetStream();
+
+            serverPKey = new byte[clientSym.Length];
+
+            networkStream.Read(serverPKey, 0, serverPKey.Length);
+
         }
 
         private void buttonRegistar_Click(object sender, EventArgs e)
@@ -44,19 +60,8 @@ namespace Client
             //Passar os dados do utilizador para o server.
             protocolSI = new ProtocolSI();
 
-
-            TcpClient tcpClient = new TcpClient();
-            NetworkStream networkStream = null;
-            
-
-            try
+           /* try
             {
-                tcpClient = new TcpClient();
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, PORT);
-                tcpClient.Connect(endPoint);
-                networkStream = tcpClient.GetStream();
-                networkStream = tcpClient.GetStream();
-
                 byte[] byteUsername = protocolSI.Make(ProtocolSICmdType.NORMAL, username);
                 networkStream.Write(byteUsername, 0, byteUsername.Length);
 
@@ -67,7 +72,7 @@ namespace Client
             {
 
                 throw;
-            }
+            }*/
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

@@ -33,6 +33,19 @@ namespace Server
                 tcpClient = tcpListener.AcceptTcpClient();
                 networkStream = tcpClient.GetStream();
 
+                byte[] publicKey;
+                byte[] SymClientKey;
+
+                string pubKey = genKeys();
+
+                publicKey = Encoding.UTF8.GetBytes(pubKey);
+
+                // send to client the public key
+                networkStream.Write(publicKey, 0, publicKey.Length);
+
+                // now wait to receive the client key
+                //networkStream.Read(bobPubKeyBlob, 0, bobPubKeyBlob.Length);
+
                 int bytesRead = 0;
 
                 bytesRead = networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
