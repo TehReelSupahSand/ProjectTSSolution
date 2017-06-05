@@ -72,11 +72,13 @@ namespace Client
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void buttonGenerateKey_Click(object sender, EventArgs e)
         {
+
+            Server.Program.genKeys();
 
         }
     }
