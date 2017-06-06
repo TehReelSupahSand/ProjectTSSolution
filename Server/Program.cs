@@ -26,6 +26,9 @@ namespace Server
             TcpClient tcpClient = null;
             NetworkStream networkStream = null;
 
+            byte[] symKey1;
+            string symKey2;
+
             try
             {
                 rsa = new RSACryptoServiceProvider();
@@ -52,6 +55,16 @@ namespace Server
                 networkStream.Write(packet, 0, packet.Length);
 
                 Console.WriteLine("Chave Pública Enviada");
+
+                networkStream.Read(protocolSI.Buffer,0,protocolSI.Buffer.Length);
+                symKey2 = protocolSI.GetStringFromData();
+
+                //symKey2 = Convert.ToBase64String(symKey1);
+
+                byte[] dados = Convert.FromBase64String(symKey2);
+                byte[] dadosDec = rsa.Decrypt(dados, true);
+
+                Console.WriteLine(symKey2);
             }
             catch (Exception exception)
             {

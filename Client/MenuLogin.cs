@@ -25,6 +25,11 @@ namespace Client
         TcpClient tcpClient = new TcpClient();
         NetworkStream networkStream = null;
 
+        AesCryptoServiceProvider aes;
+
+        private byte[] key;
+        private byte[] iv;
+
         public MenuLogin()
         {
             InitializeComponent();
@@ -34,7 +39,9 @@ namespace Client
 
             protocolSI = new ProtocolSI();
             rsa = new RSACryptoServiceProvider();
-            
+            aes = new AesCryptoServiceProvider();
+
+
 
         }
 
@@ -124,6 +131,35 @@ namespace Client
                 {
                     textBoxKey.Text = protocolSI.GetStringFromData();
                 }
+
+                byte[] dados = Encoding.UTF8.GetBytes("SymKeydesenrrasque");
+                byte[] dadosEnc = rsa.Encrypt(dados, true);
+
+                networkStream.Write(dadosEnc, 0, dadosEnc.Length);
+
+                /*using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
+                {
+                    string publicKey = textBoxKey.Text;
+
+                    this.key = aes.Key;
+                    //this.iv = aes.IV;
+
+                    byte[] encKey;
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(key, 0, key.Length);
+                        }
+
+                        encKey = ms.ToArray();
+                    }
+
+                    
+
+                }*/
+
             }
 
             catch (Exception)
