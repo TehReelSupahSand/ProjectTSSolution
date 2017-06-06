@@ -71,7 +71,17 @@ namespace Server
                 Console.WriteLine(exception.Message);
             }
 
-            
+            Console.ReadKey();
+        }
+
+        private void register()
+        {
+
+            protocolSI = new ProtocolSI();
+            TcpListener tcpListener = null;
+            TcpClient tcpClient = null;
+            NetworkStream networkStream = null;
+
             try
             {
                 //Obter username
@@ -90,7 +100,7 @@ namespace Server
 
                 Console.WriteLine(username);
                 Console.WriteLine(password);
-  
+
             }
             catch (Exception exception)
             {
@@ -108,7 +118,6 @@ namespace Server
                     tcpClient.Close();
                 }
             }
-
         }
 
 
