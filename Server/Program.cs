@@ -141,16 +141,6 @@ namespace Server
             return imagem1;
         }
 
-        static string ficheiro1()
-        {
-            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            string imagem1 = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605" + "estg_logo.jpg");
-
-            //encryptar
-            return imagem1;
-        }
-
         static string ficheiro2()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -167,6 +157,8 @@ namespace Server
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
             string imagem3 = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605" + "ipl_logo_white.png");
+
+            //encryptar
 
             return imagem3;
         }
