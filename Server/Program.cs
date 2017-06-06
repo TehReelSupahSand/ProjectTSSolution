@@ -121,7 +121,7 @@ namespace Server
         }
 
 
-        static void pedirLista()
+        static string[] pedirLista()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -129,7 +129,46 @@ namespace Server
 
             string[] ficheiros = Directory.GetFiles(pasta).Select(Path.GetFileName).ToArray();
 
-            foreach (string f in ficheiros) { Console.WriteLine(f); }
+            return ficheiros;
+        }
+
+        static string ficheiro1()
+        {
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            string imagem1 = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605" + "estg_logo.jpg");
+
+            return imagem1;
+        }
+
+        static string ficheiro1()
+        {
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            string imagem1 = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605" + "estg_logo.jpg");
+
+            //encryptar
+            return imagem1;
+        }
+
+        static string ficheiro2()
+        {
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            string imagem2 = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605" + "ipl_logo_gray.png");
+
+            //encryptar
+
+            return imagem2;
+        }
+
+        static string ficheiro3()
+        {
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            string imagem3 = Path.GetFileName(path + "/Material_Projeto_Pratico-20170605" + "ipl_logo_white.png");
+
+            return imagem3;
         }
 
         /*private bool VerifyLogin(string username, string passwordhash)
