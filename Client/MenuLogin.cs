@@ -183,17 +183,41 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //decryptar
+            string path = Server.Program.ficheiro1();
 
+            Image imagem = new Bitmap(path);
+            pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
         }
 
         private void buttonPedirLista_Click(object sender, EventArgs e)
         {
-            /*decryptar a string[]
+            //decryptar
+            string[] ficheiros = Server.Program.pedirLista();
 
-            foreach (string imagem in //string[])
+            foreach (string imagem in ficheiros)
             {
                 listBoxFicheiros.Items.Add(imagem);
-            }*/
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //decryptar
+            string path = Server.Program.ficheiro2();
+
+            Image imagem = new Bitmap(path);
+            pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //decryptar
+            string path = Server.Program.ficheiro3();
+
+            Image imagem = new Bitmap(path);
+            pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
         }
     }
 }

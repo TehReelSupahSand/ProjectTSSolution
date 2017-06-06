@@ -40,12 +40,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonPedirLista = new System.Windows.Forms.Button();
             this.groupBoxFicheiros = new System.Windows.Forms.GroupBox();
+            this.listBoxFicheiros = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonGenerateKey = new System.Windows.Forms.Button();
             this.textBoxKey = new System.Windows.Forms.TextBox();
-            this.listBoxFicheiros = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxFicheiros.SuspendLayout();
@@ -177,6 +177,14 @@
             this.groupBoxFicheiros.TabStop = false;
             this.groupBoxFicheiros.Text = "Ficheiros";
             // 
+            // listBoxFicheiros
+            // 
+            this.listBoxFicheiros.FormattingEnabled = true;
+            this.listBoxFicheiros.Location = new System.Drawing.Point(21, 48);
+            this.listBoxFicheiros.Name = "listBoxFicheiros";
+            this.listBoxFicheiros.Size = new System.Drawing.Size(139, 108);
+            this.listBoxFicheiros.TabIndex = 14;
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(259, 172);
@@ -185,6 +193,7 @@
             this.button3.TabIndex = 13;
             this.button3.Text = "Ficheiro3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -194,6 +203,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "Ficheiro2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -223,14 +233,6 @@
             this.textBoxKey.Name = "textBoxKey";
             this.textBoxKey.Size = new System.Drawing.Size(329, 37);
             this.textBoxKey.TabIndex = 13;
-            // 
-            // listBoxFicheiros
-            // 
-            this.listBoxFicheiros.FormattingEnabled = true;
-            this.listBoxFicheiros.Location = new System.Drawing.Point(21, 48);
-            this.listBoxFicheiros.Name = "listBoxFicheiros";
-            this.listBoxFicheiros.Size = new System.Drawing.Size(139, 108);
-            this.listBoxFicheiros.TabIndex = 14;
             // 
             // MenuLogin
             // 

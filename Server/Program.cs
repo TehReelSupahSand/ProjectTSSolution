@@ -121,7 +121,7 @@ namespace Server
         }
 
 
-        static string[] pedirLista()
+        static public string[] pedirLista()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -129,10 +129,12 @@ namespace Server
 
             string[] ficheiros = Directory.GetFiles(pasta).Select(Path.GetFileName).ToArray();
 
+            //encriptar
+
             return ficheiros;
         }
 
-        static string ficheiro1()
+        static public string ficheiro1()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -141,7 +143,7 @@ namespace Server
             return imagem1;
         }
 
-        static string ficheiro2()
+        static public string ficheiro2()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -152,7 +154,7 @@ namespace Server
             return imagem2;
         }
 
-        static string ficheiro3()
+        static public string ficheiro3()
         {
             string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
