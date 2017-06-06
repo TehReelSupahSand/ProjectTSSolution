@@ -132,10 +132,10 @@ namespace Client
                     textBoxKey.Text = protocolSI.GetStringFromData();
                 }
 
-                byte[] dados = Encoding.UTF8.GetBytes("SymKeydesenrrasque");
+               /* byte[] dados = Encoding.UTF8.GetBytes("SymKeydesenrrasque");
                 byte[] dadosEnc = rsa.Encrypt(dados, true);
 
-                networkStream.Write(dadosEnc, 0, dadosEnc.Length);
+                networkStream.Write(dadosEnc, 0, dadosEnc.Length);*/
 
                 /*using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
                 {
@@ -184,10 +184,15 @@ namespace Client
         private void button1_Click(object sender, EventArgs e)
         {
             //decryptar
-            string path = Server.Program.ficheiro1();
+            string caminho = Server.Program.ficheiro1();
 
-            Image imagem = new Bitmap(path);
-            pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+            if (caminho != null)
+            {
+                Image imagem = new Bitmap(caminho);
+                pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+            }
+            else
+                MessageBox.Show("Ocorreu um erro no caminho da imagem.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void buttonPedirLista_Click(object sender, EventArgs e)
@@ -204,20 +209,30 @@ namespace Client
         private void button2_Click(object sender, EventArgs e)
         {
             //decryptar
-            string path = Server.Program.ficheiro2();
+            string caminho2 = Server.Program.ficheiro2();
 
-            Image imagem = new Bitmap(path);
-            pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+            if (caminho2 != null)
+            {
+                Image imagem = new Bitmap(caminho2);
+                pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+            }
+            else
+                MessageBox.Show("Ocorreu um erro no caminho da imagem.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //decryptar
-            string path = Server.Program.ficheiro3();
+            string caminho3 = Server.Program.ficheiro3();
 
-            Image imagem = new Bitmap(path);
-            pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+            if (caminho3 != null)
+            {
+                Image imagem = new Bitmap(caminho3);
+                pictureBox1.Image = new Bitmap(imagem, new Size(188, 133));
+            }
+            else
+                MessageBox.Show("Ocorreu um erro no caminho da imagem.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
